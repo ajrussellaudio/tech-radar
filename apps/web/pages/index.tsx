@@ -5,11 +5,11 @@ export default function Web(props: unknown) {
 }
 
 export async function getStaticProps() {
-  const radar = await client.fetch(`*[_type == "radar"]`);
+  const blips = await client.fetch(`*[_type == "blips"]`);
 
   return {
     props: {
-      radar,
+      blips,
     },
   };
 }

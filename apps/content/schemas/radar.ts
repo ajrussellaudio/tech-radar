@@ -1,9 +1,22 @@
 import { Rule } from '@sanity/types';
+import { MdRadar } from 'react-icons/md';
+import { GiBrainstorm, GiPlatform } from 'react-icons/gi';
+import { FaCode, FaTools } from 'react-icons/fa';
+
+type Ring = 'adopt' | 'assess' | 'trial' | 'hold';
+type Quadrant = 'techniques' | 'platforms' | 'tools' | 'languages';
+
+function titleCase(str: string): string {
+  return str.split('').reduce((prev, curr, i) => {
+    return prev + (i === 0 ? curr.toUpperCase() : curr.toLowerCase());
+  }, '');
+}
 
 export const radar = {
-  name: 'radar',
-  title: 'Tech Radar',
+  name: 'blips',
+  title: 'Blips',
   type: 'document',
+  icon: MdRadar,
   fields: [
     {
       name: 'name',
@@ -46,8 +59,26 @@ export const radar = {
     {
       name: 'description',
       title: 'Description',
+      description: 'Optional.',
       type: 'array',
       of: [{ type: 'block' }],
     },
   ],
+  preview: {
+    select: {
+      title: 'name',
+      quadrant: 'quadrant',
+      ring: 'ring',
+    },
+    prepare({ title, quadrant, ring }: { title: string; quadrant: Quadrant; ring: Ring }) {
+      const media = {
+        techniques: GiBrainstorm,
+        platforms: GiPlatform,
+        tools: FaTools,
+        languages: FaCode,
+      }[quadrant];
+      const subtitle = [titleCase(ring), titleCase(quadrant)].join(' | ');
+      return { title, subtitle, media };
+    },
+  },
 };
