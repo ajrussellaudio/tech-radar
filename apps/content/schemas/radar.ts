@@ -1,10 +1,5 @@
 import { Rule } from '@sanity/types';
 import { MdRadar } from 'react-icons/md';
-import { GiBrainstorm, GiPlatform } from 'react-icons/gi';
-import { FaCode, FaTools } from 'react-icons/fa';
-
-type Ring = 'adopt' | 'assess' | 'trial' | 'hold';
-type Quadrant = 'techniques' | 'platforms' | 'tools' | 'languages';
 
 function titleCase(str: string): string {
   return str.split('').reduce((prev, curr, i) => {
@@ -28,26 +23,15 @@ export const radar = {
     {
       name: 'ring',
       title: 'Ring',
-      type: 'string',
-      options: {
-        list: ['adopt', 'assess', 'trial', 'hold'],
-        layout: 'radio',
-      },
+      type: 'reference',
+      to: [{ type: 'ring' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'quadrant',
       title: 'Quadrant',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Techniques', value: 'techniques' },
-          { title: 'Platforms', value: 'platforms' },
-          { title: 'Tools', value: 'tools' },
-          { title: 'Languages & Frameworks', value: 'languages' },
-        ],
-        layout: 'radio',
-      },
+      type: 'reference',
+      to: [{ type: 'quadrant' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -67,18 +51,12 @@ export const radar = {
   preview: {
     select: {
       title: 'name',
-      quadrant: 'quadrant',
-      ring: 'ring',
+      quadrant: 'quadrant.name',
+      ring: 'ring.name',
     },
-    prepare({ title, quadrant, ring }: { title: string; quadrant: Quadrant; ring: Ring }) {
-      const media = {
-        techniques: GiBrainstorm,
-        platforms: GiPlatform,
-        tools: FaTools,
-        languages: FaCode,
-      }[quadrant];
+    prepare({ title, quadrant, ring }: { title: string; quadrant: string; ring: string }) {
       const subtitle = [titleCase(ring), titleCase(quadrant)].join(' | ');
-      return { title, subtitle, media };
+      return { title, subtitle };
     },
   },
 };
