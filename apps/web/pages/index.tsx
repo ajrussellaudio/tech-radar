@@ -1,7 +1,17 @@
+import { GetStaticProps } from 'next';
 import { Radar } from '../components/Radar';
 import { client } from '../lib/client';
+import blipsQuery from '../query/blips';
+import quadrantsQuery from '../query/quadrants';
+import ringsQuery from '../query/rings';
 
-export default function Web(props: { blips: Blip[] }) {
+type StaticProps = {
+  blips: Blip[];
+  quadrants: Sector[];
+  rings: Sector[];
+};
+
+export default function Web(props: StaticProps) {
   return (
     <>
       <Radar blips={props.blips} />
@@ -10,18 +20,16 @@ export default function Web(props: { blips: Blip[] }) {
   );
 }
 
-const query = `*[_type == "blips"]{
-  _id, name, description, isNew,
-  quadrant->,
-  ring->,
-}`;
-
-export async function getStaticProps() {
-  const blips = await client.fetch(query);
+export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+  const blips = await client.fetch(blipsQuery);
+  const quadrants = await client.fetch(quadrantsQuery);
+  const rings = await client.fetch(ringsQuery);
 
   return {
     props: {
       blips,
+      quadrants,
+      rings,
     },
   };
-}
+};
