@@ -1,11 +1,10 @@
+import { useRadarContext } from '../../context/Radar';
 import { Axes } from './Axes';
 import { Rings } from './Rings';
 
-export type RadarProps = {
-  blips: Blip[];
-};
+export function Radar() {
+  const { blips } = useRadarContext();
 
-export function Radar({ blips }: RadarProps) {
   const sizes = {
     width: 500,
     height: 500,
