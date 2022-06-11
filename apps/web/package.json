@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@visx/grid": "^2.10.0",
     "@visx/shape": "^2.10.0",
     "next": "12.0.8",
     "next-sanity": "^0.5.2",
