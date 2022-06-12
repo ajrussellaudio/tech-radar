@@ -11,5 +11,17 @@ export const ring = {
       title: 'Name',
       type: 'string',
     },
+    {
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+    },
+  ],
+  orderings: [
+    {
+      title: 'Order',
+      name: 'order',
+      by: [{ field: 'order', direction: 'asc' }],
+    },
   ],
 };
