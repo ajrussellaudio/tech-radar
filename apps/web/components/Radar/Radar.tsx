@@ -2,23 +2,14 @@ import { GridAngle, GridRadial } from '@visx/grid';
 import { scaleBand } from '@visx/scale';
 import { Group } from '@visx/group';
 import { useRadarContext } from '../../context/Radar';
+import { useSize } from '../../context/Size';
 
 export function Radar() {
   const { blips, quadrants, rings } = useRadarContext();
+  const { width, height, margin } = useSize();
 
-  const sizes = {
-    width: 500,
-    height: 500,
-    margin: {
-      top: 20,
-      bottom: 20,
-      left: 20,
-      right: 20,
-    },
-  };
-
-  const xMax = sizes.width - sizes.margin.left - sizes.margin.right;
-  const yMax = sizes.height - sizes.margin.top - sizes.margin.bottom;
+  const xMax = width - margin.left - margin.right;
+  const yMax = height - margin.top - margin.bottom;
   const radius = Math.min(xMax, yMax) / 2;
 
   const quadrantScale = scaleBand({
@@ -32,9 +23,9 @@ export function Radar() {
 
   return (
     <>
-      <svg width={sizes.width} height={sizes.height}>
-        <rect fill="papayawhip" width={sizes.width} height={sizes.height} rx={14} />
-        <Group top={sizes.height / 2} left={sizes.width / 2}>
+      <svg width={width} height={height}>
+        <rect fill="papayawhip" width={width} height={height} rx={14} />
+        <Group top={height / 2} left={width / 2}>
           <GridAngle outerRadius={radius} scale={quadrantScale} stroke="black" strokeWidth={1} strokeOpacity={0.3} />
           <GridRadial
             scale={ringScale}

@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import { Radar } from '../components/Radar';
 import { RadarContextProvider } from '../context/Radar';
+import { SizeProvider } from '../context/Size';
 import { client } from '../lib/client';
 import blipsQuery from '../query/blips';
 import quadrantsQuery from '../query/quadrants';
@@ -15,7 +16,9 @@ type StaticProps = {
 export default function Web(props: StaticProps) {
   return (
     <RadarContextProvider value={props}>
-      <Radar />
+      <SizeProvider>
+        <Radar />
+      </SizeProvider>
     </RadarContextProvider>
   );
 }
