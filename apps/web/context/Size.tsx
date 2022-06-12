@@ -9,12 +9,15 @@ type SizeContextType = {
     left: number;
     right: number;
   };
+  xMax: number;
+  yMax: number;
+  radius: number;
 };
 
 const SizeContext = createContext<SizeContextType | undefined>(undefined);
 
 export function SizeProvider({ children }: { children: ReactNode }) {
-  const defaultSizes = {
+  const sizes = {
     width: 500,
     height: 500,
     margin: {
@@ -24,7 +27,12 @@ export function SizeProvider({ children }: { children: ReactNode }) {
       right: 20,
     },
   };
-  return <SizeContext.Provider value={defaultSizes}>{children}</SizeContext.Provider>;
+
+  const xMax = sizes.width - sizes.margin.left - sizes.margin.right;
+  const yMax = sizes.height - sizes.margin.top - sizes.margin.bottom;
+  const radius = Math.min(xMax, yMax) / 2;
+
+  return <SizeContext.Provider value={{ ...sizes, xMax, yMax, radius }}>{children}</SizeContext.Provider>;
 }
 
 export function useSize() {
