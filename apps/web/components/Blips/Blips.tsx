@@ -11,18 +11,18 @@ export function Blips() {
   const { height, width, radius } = useSize();
   const { random } = useRandom();
 
+  function randomInSector(blipSector: Sector, sectors: Sector[], scaling: number) {
+    const padding = scaling / 20;
+    const index = sectors.findIndex((sector) => sector._id === blipSector._id);
+    return random(padding + (index / sectors.length) * scaling, ((index + 1) / sectors.length) * scaling - padding);
+  }
+
   return (
     <Group top={height / 2} left={width / 2}>
       {blips.map((blip) => {
-        const quadrantIndex = quadrants.findIndex((quadrant) => quadrant._id === blip.quadrant._id);
-        const ringIndex = rings.findIndex((ring) => ring._id === blip.ring._id);
-
         const { x, y } = cartesian({
-          angle: random(
-            (quadrantIndex / quadrants.length) * Math.PI * 2,
-            ((quadrantIndex + 1) / quadrants.length) * Math.PI * 2,
-          ),
-          radius: random((ringIndex / rings.length) * radius, ((ringIndex + 1) / rings.length) * radius),
+          angle: randomInSector(blip.quadrant, quadrants, Math.PI * 2),
+          radius: randomInSector(blip.ring, rings, radius),
         });
 
         return (
