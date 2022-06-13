@@ -9,11 +9,7 @@ type RadarContextType = {
 const RadarContext = createContext<RadarContextType | undefined>(undefined);
 
 export function RadarContextProvider({ children, value }: { value: RadarContextType; children: ReactNode }) {
-  return (
-    <RadarContext.Provider value={value}>
-      {children} <pre style={{ whiteSpace: 'pre-wrap' }}>{JSON.stringify(value, null, 2)}</pre>
-    </RadarContext.Provider>
-  );
+  return <RadarContext.Provider value={value}>{children}</RadarContext.Provider>;
 }
 
 export function useRadarContext() {
