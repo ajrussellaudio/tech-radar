@@ -1,10 +1,9 @@
 import { Group } from '@visx/group';
-import { Circle } from '@visx/shape';
-import { Text } from '@visx/text';
 import { useRadarContext } from '../../context/Radar';
 import { useRandom } from '../../context/Random';
 import { useSize } from '../../context/Size';
 import { cartesian } from '../../util/cartesian';
+import { Blip } from './Blip';
 
 export function Blips() {
   const { blips, quadrants, rings } = useRadarContext();
@@ -25,14 +24,7 @@ export function Blips() {
           radius: randomInSector(blip.ring, rings, radius),
         });
 
-        return (
-          <Group key={blip._id}>
-            <Circle cx={x} cy={y} r={radius / 50} />
-            <Text x={x + radius / 50} y={y}>
-              {blip.name}
-            </Text>
-          </Group>
-        );
+        return <Blip key={blip._id} x={x} y={y} radius={radius / 50} title={blip.name} />;
       })}
     </Group>
   );
