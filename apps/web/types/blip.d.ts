@@ -3,10 +3,14 @@ type Sector = {
   name: string;
 };
 
+type Quadrant = Sector & {
+  color: string;
+};
+
 type Blip = {
   _id: string;
   name: string;
   ring: Sector;
-  quadrant: Sector;
+  quadrant: Quadrant;
   isNew: boolean;
 };

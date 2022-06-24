@@ -11,5 +11,10 @@ export const quadrant = {
       title: 'Name',
       type: 'string',
     },
+    {
+      name: 'color',
+      title: 'Color',
+      type: 'colorPicker',
+    },
   ],
 };

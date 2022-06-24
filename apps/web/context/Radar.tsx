@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext } from 'react';
 
 type RadarContextType = {
   blips: Blip[];
-  quadrants: Sector[];
+  quadrants: Quadrant[];
   rings: Sector[];
 };
 

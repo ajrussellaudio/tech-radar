@@ -8,9 +8,10 @@ export type BlipProps = {
   y: number;
   radius: number;
   title: string;
+  color: string;
 };
 
-export function Blip({ x, y, radius, title }: BlipProps) {
+export function Blip({ x, y, radius, title, color }: BlipProps) {
   const [isTitleVisible, setIsTitleVisible] = useState(false);
 
   function showTitle() {
@@ -23,7 +24,7 @@ export function Blip({ x, y, radius, title }: BlipProps) {
 
   return (
     <Group>
-      <Circle cx={x} cy={y} r={radius} onMouseEnter={showTitle} onMouseLeave={hideTitle} />
+      <Circle cx={x} cy={y} r={radius} onMouseEnter={showTitle} onMouseLeave={hideTitle} fill={color} />
       {isTitleVisible && (
         <Text x={x + radius} y={y}>
           {title}

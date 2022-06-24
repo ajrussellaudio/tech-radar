@@ -10,7 +10,7 @@ import ringsQuery from '../query/rings';
 
 type StaticProps = {
   blips: Blip[];
-  quadrants: Sector[];
+  quadrants: Quadrant[];
   rings: Sector[];
 };
 

@@ -10,9 +10,11 @@ export function Blips() {
   const { height, width, radius } = useSize();
   const { random } = useRandom();
 
+  const scale = 1 / 30;
+
   function randomInSector(blipQuadrant: Sector) {
     const TWO_PI = Math.PI * 2;
-    const padding = TWO_PI / 20;
+    const padding = TWO_PI * scale;
     const index = quadrants.findIndex((quadrant) => quadrant._id === blipQuadrant._id);
     const bound = (index: number) => {
       return (index / quadrants.length) * TWO_PI;
@@ -23,7 +25,7 @@ export function Blips() {
   }
 
   function randomInRing(blipRing: Sector) {
-    const padding = radius / 20;
+    const padding = radius * scale;
     const index = rings.findIndex((ring) => ring._id === blipRing._id);
     const bound = (index: number) => {
       return Math.sqrt(index / rings.length) * radius;
@@ -41,7 +43,9 @@ export function Blips() {
           radius: randomInRing(blip.ring),
         });
 
-        return <Blip key={blip._id} x={x} y={y} radius={radius / 50} title={blip.name} />;
+        return (
+          <Blip key={blip._id} x={x} y={y} radius={radius * scale} title={blip.name} color={blip.quadrant.color} />
+        );
       })}
     </Group>
   );
