@@ -7,6 +7,7 @@ const defaultBlip: Blip = {
   quadrant: {
     _id: 'quad1',
     name: 'Languages',
+    color: '#f00',
   },
   ring: {
     _id: 'ring1',
@@ -23,6 +24,7 @@ describe('toSegments', () => {
     const blip: Blip = {
       ...defaultBlip,
       quadrant: {
+        ...defaultBlip.quadrant,
         _id: 'quad1',
         name: 'Languages',
       },
@@ -42,6 +44,7 @@ describe('toSegments', () => {
     const blip1: Blip = {
       ...defaultBlip,
       quadrant: {
+        ...defaultBlip.quadrant,
         _id: 'quad1',
         name: 'Languages',
       },
@@ -69,6 +72,7 @@ describe('toSegments', () => {
     const blip1: Blip = {
       ...defaultBlip,
       quadrant: {
+        ...defaultBlip.quadrant,
         _id: 'quad1',
         name: 'Languages',
       },
@@ -80,6 +84,7 @@ describe('toSegments', () => {
     const blip2: Blip = {
       ...blip1,
       quadrant: {
+        ...defaultBlip.quadrant,
         _id: 'quad2',
         name: 'Tools',
       },
