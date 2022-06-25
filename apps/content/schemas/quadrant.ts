@@ -14,7 +14,7 @@ export const quadrant = {
     {
       name: 'color',
       title: 'Color',
-      type: 'colorPicker',
+      type: 'color',
     },
   ],
 };

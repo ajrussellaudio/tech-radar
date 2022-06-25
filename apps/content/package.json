@@ -1,5 +1,5 @@
 {
-  "name": "pickatale-tech-radar",
+  "name": "content",
   "private": true,
   "version": "1.0.0",
   "description": "This is an official Yarn v1 starter turborepo",
@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "@sanity/base": "^2.30.0",
+    "@sanity/color-input": "^2.30.1",
     "@sanity/core": "^2.30.0",
     "@sanity/default-layout": "^2.30.0",
     "@sanity/default-login": "^2.30.0",
@@ -27,7 +28,6 @@
     "react": "^17.0",
     "react-dom": "^17.0",
     "react-icons": "^4.3.1",
-    "sanity-plugin-color-picker": "^1.0.3",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
