@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Star } from './Star';
 
 export type BlipProps = {
   x: number;
@@ -6,23 +7,32 @@ export type BlipProps = {
   radius: number;
   title: string;
   color: string;
+  isNew: boolean;
 };
 
-export function Blip({ x, y, radius, title, color }: BlipProps) {
-  const [isTitleVisible, setIsTitleVisible] = useState(false);
+export function Blip({ x, y, radius, title, color, isNew }: BlipProps) {
+  const [isHovered, setIsHovered] = useState(false);
 
-  function showTitle() {
-    setIsTitleVisible(true);
+  function handleMouseEnter() {
+    setIsHovered(true);
   }
 
-  function hideTitle() {
-    setIsTitleVisible(false);
+  function handleMouseLeave() {
+    setIsHovered(false);
   }
+
+  const style = {
+    fill: color,
+    stroke: 'white',
+    strokeWidth: 2,
+  };
+
+  const Shape = isNew ? Star : 'circle';
 
   return (
     <g>
-      <circle cx={x} cy={y} r={radius} onMouseEnter={showTitle} onMouseLeave={hideTitle} fill={color} />
-      {isTitleVisible && (
+      <Shape cx={x} cy={y} r={radius} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} {...style} />
+      {isHovered && (
         <text x={x + radius} y={y}>
           {title}
         </text>

@@ -44,7 +44,15 @@ export function Blips() {
         });
 
         return (
-          <Blip key={blip._id} x={x} y={y} radius={radius * scale} title={blip.name} color={blip.quadrant.color} />
+          <Blip
+            key={blip._id}
+            x={x}
+            y={y}
+            radius={radius * scale}
+            title={blip.name}
+            color={blip.quadrant.color}
+            isNew={blip.isNew}
+          />
         );
       })}
     </Group>
