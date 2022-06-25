@@ -1,10 +1,10 @@
-import { scaleBand } from '@visx/scale';
-import { GridAngle } from '@visx/grid';
 import { Group } from '@visx/group';
 import { useRadarContext } from '../../context/Radar';
 import { useSize } from '../../context/Size';
-import { Circle } from '@visx/shape';
-import { darken, lighten } from 'polished';
+import { rgba } from 'polished';
+import { Arc } from '../Arc';
+import { cartesian } from '../../util/cartesian';
+import { Fragment } from 'react';
 
 export type GridProps = Record<string, never>;
 
@@ -13,26 +13,52 @@ const style = {
   strokeWidth: 1,
   strokeOpacity: 0.3,
   strokeDasharray: '4,3',
+  fill: 'none',
 };
+
+const radiusScale = (i: number, total: number) => Math.sqrt(i / total);
 
 export function Grid() {
   const { quadrants, rings } = useRadarContext();
   const { height, width, radius } = useSize();
 
-  const quadrantScale = scaleBand({
-    domain: quadrants.map((quadrant) => quadrant.name),
-    range: [0, Math.PI * 2],
-  });
-
   return (
     <Group top={height / 2} left={width / 2}>
-      {rings.map((ring, i) => {
-        const r = radius * Math.sqrt((rings.length - i) / rings.length);
-        const fill = darken(((rings.length - i) / rings.length) * 0.5, '#00bbff');
-        console.log({ fill });
-        return <Circle key={ring._id} cx={0} cy={0} r={r} {...style} fill={fill} />;
+      {quadrants.map((quadrant, qIndex) => {
+        return (
+          <Fragment key={quadrant._id}>
+            {rings.map((ring, rIndex) => {
+              const r = radius * radiusScale(rings.length - rIndex, rings.length);
+              const fill = rgba(quadrant.color, 0.075);
+              return (
+                <Arc
+                  key={ring._id}
+                  cx={0}
+                  cy={0}
+                  r={r}
+                  startAngle={(qIndex / quadrants.length) * 2 * Math.PI}
+                  endAngle={((qIndex + 1) / quadrants.length) * 2 * Math.PI}
+                  stroke="none"
+                  fill={fill}
+                />
+              );
+            })}
+          </Fragment>
+        );
       })}
-      <GridAngle outerRadius={radius} scale={quadrantScale} {...style} />
+
+      {rings.map((ring, rIndex) => {
+        const r = radius * radiusScale(rIndex + 1, rings.length);
+        return <circle key={ring._id} cx={0} cy={0} r={r} {...style} />;
+      })}
+
+      {quadrants.map((quadrant, i) => {
+        const { x, y } = cartesian({
+          radius,
+          angle: (i / quadrants.length) * 2 * Math.PI,
+        });
+        return <line key={quadrant._id} x1={0} y1={0} x2={x} y2={y} {...style} />;
+      })}
     </Group>
   );
 }
