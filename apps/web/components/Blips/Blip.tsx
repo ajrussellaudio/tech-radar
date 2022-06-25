@@ -1,6 +1,3 @@
-import { Group } from '@visx/group';
-import { Circle } from '@visx/shape';
-import { Text } from '@visx/text';
 import { useState } from 'react';
 
 export type BlipProps = {
@@ -23,13 +20,13 @@ export function Blip({ x, y, radius, title, color }: BlipProps) {
   }
 
   return (
-    <Group>
-      <Circle cx={x} cy={y} r={radius} onMouseEnter={showTitle} onMouseLeave={hideTitle} fill={color} />
+    <g>
+      <circle cx={x} cy={y} r={radius} onMouseEnter={showTitle} onMouseLeave={hideTitle} fill={color} />
       {isTitleVisible && (
-        <Text x={x + radius} y={y}>
+        <text x={x + radius} y={y}>
           {title}
-        </Text>
+        </text>
       )}
-    </Group>
+    </g>
   );
 }

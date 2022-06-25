@@ -1,8 +1,8 @@
-import { Group } from '@visx/group';
 import { useRadarContext } from '../../context/Radar';
 import { useRandom } from '../../context/Random';
 import { useSize } from '../../context/Size';
 import { cartesian } from '../../util/cartesian';
+import { Group } from '../Group';
 import { Blip } from './Blip';
 
 export function Blips() {

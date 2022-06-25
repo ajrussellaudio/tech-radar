@@ -1,10 +1,10 @@
-import { Group } from '@visx/group';
 import { useRadarContext } from '../../context/Radar';
 import { useSize } from '../../context/Size';
 import { rgba } from 'polished';
 import { Arc } from '../Arc';
 import { cartesian } from '../../util/cartesian';
 import { Fragment } from 'react';
+import { Group } from '../Group';
 
 export type GridProps = Record<string, never>;
 
