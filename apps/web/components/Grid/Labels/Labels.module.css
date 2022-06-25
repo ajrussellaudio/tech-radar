@@ -1,0 +1,9 @@
+.quadrant {
+  stroke: none;
+  stroke-width: 4px;
+  fill: transparent;
+}
+
+.quadrant:hover {
+  stroke: tomato;
+}

@@ -1,1 +1,1 @@
-export { Arc } from './Arc';
+export { Arc, type ArcProps } from './Arc';
