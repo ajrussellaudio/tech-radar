@@ -17,7 +17,7 @@ export const Fill = () => {
           <Fragment key={quadrant._id}>
             {rings.map((ring, rIndex) => {
               const r = radius * radiusScale(rings.length - rIndex, rings.length);
-              const fill = rgba(quadrant.color, 0.075);
+              const fill = rgba(quadrant.color, 0.1);
               return (
                 <Arc
                   key={ring._id}

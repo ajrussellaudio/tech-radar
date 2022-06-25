@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useHover } from '../../hooks/useHover';
 import { Star } from './Star';
 
 export type BlipProps = {
@@ -11,15 +12,7 @@ export type BlipProps = {
 };
 
 export function Blip({ x, y, radius, title, color, isNew }: BlipProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  function handleMouseEnter() {
-    setIsHovered(true);
-  }
-
-  function handleMouseLeave() {
-    setIsHovered(false);
-  }
+  const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
 
   const style = {
     fill: color,

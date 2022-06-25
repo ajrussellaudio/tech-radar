@@ -3,6 +3,7 @@ import { Group } from '../Group';
 import { Fill } from './Fill';
 import { RadialLines } from './RadialLines';
 import { AngledLines } from './AngledLines';
+import { Labels } from './Labels';
 
 const style = {
   stroke: '#333',
@@ -18,6 +19,7 @@ export function Grid() {
   return (
     <Group top={height / 2} left={width / 2}>
       <Fill />
+      <Labels />
       <RadialLines {...style} />
       <AngledLines {...style} />
     </Group>
