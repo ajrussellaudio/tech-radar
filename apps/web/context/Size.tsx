@@ -17,15 +17,14 @@ type SizeContextType = {
 const SizeContext = createContext<SizeContextType | undefined>(undefined);
 
 export function SizeProvider({ children }: { children: ReactNode }) {
-  const edge = Math.min(window.innerHeight, window.innerWidth);
   const sizes = {
-    width: edge,
-    height: edge,
+    width: 700,
+    height: 700,
     margin: {
-      top: 20,
-      bottom: 20,
-      left: 20,
-      right: 20,
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
     },
   };
 
