@@ -10,7 +10,7 @@ export function Radar() {
   return (
     <>
       <svg width={width} height={height}>
-        <rect fill="papayawhip" width={width} height={height} rx={14} />
+        <rect fill="white" stroke="#ddd" width={width} height={height} rx={14} />
         <Grid />
         <Blips />
       </svg>

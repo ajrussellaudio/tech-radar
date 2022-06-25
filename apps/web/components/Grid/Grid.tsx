@@ -5,7 +5,7 @@ import { RadialLines } from './RadialLines';
 import { AngledLines } from './AngledLines';
 
 const style = {
-  stroke: 'black',
+  stroke: '#333',
   strokeWidth: 1,
   strokeOpacity: 0.3,
   strokeDasharray: '4,3',

@@ -18,8 +18,8 @@ const SizeContext = createContext<SizeContextType | undefined>(undefined);
 
 export function SizeProvider({ children }: { children: ReactNode }) {
   const sizes = {
-    width: 500,
-    height: 500,
+    width: 700,
+    height: 700,
     margin: {
       top: 20,
       bottom: 20,
