@@ -1,0 +1,8 @@
+.line {
+  stroke: #333;
+  stroke-width: 1px;
+  stroke-opacity: 0.3;
+  stroke-dasharray: 4, 3;
+  fill: transparent;
+  pointer-events: none;
+}

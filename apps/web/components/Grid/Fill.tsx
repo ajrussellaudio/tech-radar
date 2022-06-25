@@ -26,7 +26,6 @@ export const Fill = () => {
                   r={r}
                   startAngle={(qIndex / quadrants.length) * 2 * Math.PI}
                   endAngle={((qIndex + 1) / quadrants.length) * 2 * Math.PI}
-                  stroke="none"
                   fill={fill}
                 />
               );
